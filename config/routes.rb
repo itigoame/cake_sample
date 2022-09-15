@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+  namespace :admin do
+    resources :genres,only:[:create, :index, :edit, :update]
+    resources :items
+  end
+
+  namespace :public do
+    resources :items,only:[:show, :index]
+  end
+
   devise_for :admins,skip:[:passwords],controllers:{
     registrations: "public/registrations",
     sessions: "public/sessions"
